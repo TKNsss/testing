@@ -1,6 +1,13 @@
-
-
 // .toFixed(number) : set precision of decimal number
+// remeber this:   document.querySelectorAll()
+/*
+  data attribute syntax (just an HTML attribute):
+
+  data-........="${}"
+      name     value
+
+  - have to start with "data-"
+*/
 let productsHTML = '';
 
 products.forEach((product) => {
@@ -8,7 +15,7 @@ products.forEach((product) => {
     <div class="product-container">
       <div class="product-image-container">
         <img class="product-image"
-          src=${product .image}>
+          src=${product.image}>
       </div>
 
       <div class="product-name limit-text-to-2-lines">
@@ -49,13 +56,39 @@ products.forEach((product) => {
         Added
       </div>
 
-      <button class="add-to-cart-button button-primary">
+      <button class="add-to-cart-button button-primary js-add-to-cart" data-product-id="${product.id}">
         Add to Cart
       </button>
     </div>
   `;
 });
 
-console.log(productsHTML);
-
 document.querySelector('.js-product-grid').innerHTML = productsHTML;
+
+// notice that data-product-name -> product-name convert into productName (kebab-case to camel case)
+
+document.querySelectorAll('.js-add-to-cart')
+  .forEach((button) => {
+    button.addEventListener('click', () => {
+      const productId = button.dataset.productId;
+
+      let matchingItem;
+
+      cart.forEach((item) => {
+        if (productId === item.productId) {
+          matchingItem = item;
+        }
+      });
+
+      if (matchingItem) {
+        matchingItem.quantity++;
+      } else {
+        cart.push({
+          productId: productId,
+          quantity: 1,
+        });
+      }
+
+      console.log(cart);
+    }); 
+  });
