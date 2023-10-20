@@ -656,5 +656,69 @@ const products = [
       "apparel",
       "mens"
     ]
+  },
+  {
+    id: "lkdjvlk1212123123",
+    image: "images/products/variations/thuoc-phuc-hoi-nhan-pham.jpg",
+    name: "Thuốc phục hồi nhân phẩm (VIP)",
+    rating: {
+      stars: 5,
+      count: '∞'
+    },
+    priceCents: 99999,
+    keywords: [
+      "VIP",
+      "hoi phuc",
+      "nhan pham",
+      "thuoc"
+    ]
+  },
+  {
+    id: "askfhalsjdnfan348y2y834",
+    image: "images/products/variations/thuoc-tri-ngheo-dac-tri-trieu-chung-khong-co-tien-it-tien-thieu-tien.jpg",
+    name: "Thuốc trị nghèo thâm niên (bét seo lơ)",
+    rating: {
+      stars: 4.5,
+      count: 9999
+    },
+    priceCents: 100000,
+    keywords: [
+      "bestseller",
+      "thuoc",
+      "tri ngheo",
+      "hang chinh hang"
+    ]
+  },
+  {
+    id: "ihatebackpack1234",
+    image: "images/products/backpack.jpg",
+    name: "Brand new black backpack",
+    rating: {
+      stars: 2.5,
+      count: 42
+    },
+    priceCents: 400,
+    keywords: [
+      "backpack", 
+      "large",
+      "brand",
+      "color"
+    ]
+  },
+  {
+    id: "uglyumbrella020202",
+    image: "images/products/umbrella.jpg",
+    name: "Large green umbrella",
+    rating: {
+      stars: 3,
+      count: 200
+    },
+    priceCents: 1201,
+    keywords: [
+      "umbrella",
+      "large",
+      "green",
+      "size"
+    ]
   }
 ];
