@@ -21,6 +21,7 @@
 
 @media (max-width: 800px) {
   .amazon-header-left-section {
+    /* resets a property to its inherited value if the property naturally inherits from its parent, and to its initial value if not. (180 -> 0) */
     width: unset;
   }
 }
