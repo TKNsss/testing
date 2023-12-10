@@ -51,12 +51,14 @@ products.forEach((product) => {
 
       <div class="product-spacer"></div>
 
-      <div class="added-to-cart js-added-to-cart-${product.id}">
+      <div class="added-to-cart js-added-to-cart-${product.id}">  
         <img src="images/icons/checkmark.png">
         Added
       </div>
 
-      <button class="add-to-cart-button button-primary js-add-to-cart" data-product-id="${product.id}">
+      <button class="add-to-cart-button button-primary js-add-to-cart" data-product-id="${
+        product.id
+      }">
         Add to Cart
       </button>
     </div>
@@ -96,7 +98,7 @@ document.querySelectorAll('.js-add-to-cart')
       } else {
         cart.push({
           productId,
-          quantity,
+          quantity
         });
       }
 
