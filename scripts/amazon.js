@@ -57,7 +57,7 @@ products.forEach((product) => {
       </div>
 
       <button class="add-to-cart-button button-primary js-add-to-cart" data-product-id="${
-        product.id
+        product.id   
       }">
         Add to Cart
       </button>
@@ -78,6 +78,13 @@ document.querySelectorAll('.js-add-to-cart')
     let addedMessageTimeoutId;
 
     button.addEventListener("click", () => {
+      /* 
+        To illustrate destructuring, we'll make a sandwich. Do you take everything out of the refrigerator to make your sandwich? No, you only take out the items you would like to use on your sandwich.
+
+        Destructuring is exactly the same. We may have an array or object that we are working with, but we only need some of the items contained in these.
+
+        Destructuring makes it easy to extract only what is needed.      
+      */
       const { productId } = button.dataset;
 
       let matchingItem;
@@ -86,7 +93,7 @@ document.querySelectorAll('.js-add-to-cart')
         if (productId === item.productId) {
           matchingItem = item;
         }
-      });
+      }); 
 
       const quantitySelector = document.querySelector(
         `.js-quantity-selector-${productId}`
