@@ -123,6 +123,17 @@
   margin-bottom: 17px;
 }
 
+/* 
+  default values of flex property is: 
+  - flex: 0 1 auto (grow, shrink, basis respectively)
+*/
+
+/* 
+  If you use flex:1 inside flex container then all flex items will occupy same space.
+
+  If you use flex:1 inside specific flex item then that flex item will occupy remaining space.
+*/
+
 .product-spacer {
   flex: 1;
 }
