@@ -8,6 +8,21 @@
 
   - have to start with "data-"
 */
+
+// modules only works when using live server 
+// can't use module when we open directly html file
+
+// using module helps avoid naming conflicts
+// don't have to worry about order of files
+
+// .. means get out of the current folder
+// in this situation, we use .. to get out of the amazon.js to scripts file and to outside
+
+
+// import {cart as myCart} from '../data/cart.js';      
+// we can use this to declare another variable name called "cart"
+import {cart} from '../data/cart.js';
+
 let productsHTML = '';
 
 products.forEach((product) => {
