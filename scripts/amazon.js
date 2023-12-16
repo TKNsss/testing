@@ -22,6 +22,7 @@
 // import {cart as myCart} from '../data/cart.js';      
 // we can use this to declare another variable name called "cart"
 import {cart} from '../data/cart.js';
+import {products} from '../data/products.js';
 
 let productsHTML = '';
 
