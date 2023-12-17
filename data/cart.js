@@ -1,13 +1,27 @@
-export let cart = [
-  {
-    productId: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
-    quantity: 2,
-  },
-  {
-    productId: "15b6fc6f-327a-4ec4-896f-486349e85a3d",
-    quantity: 1
-  }
-];
+export let cart = JSON.parse(localStorage.getItem('cart'));
+// 'cart' give the variable that we save
+
+// give the cart default values when first access the checkout
+// if we dont have a cart in localStorage
+if (!cart) {
+  cart = [
+    {
+      productId: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
+      quantity: 2,
+    },
+    {
+      productId: "15b6fc6f-327a-4ec4-896f-486349e85a3d",
+      quantity: 1,
+    },
+  ];
+} 
+
+function saveToStorage() {
+  localStorage.setItem('cart', JSON.stringify(cart));
+  // receive 2 string : 'name (whatever we want)', 'data that we want to save'
+  // only save string 
+  // turn cart into string
+}
 
 // notice that data-product-name -> product-name convert into productName (kebab-case to camel case)
 
@@ -33,6 +47,8 @@ export function addToCart(productId) {
       quantity
     });
   }
+
+  saveToStorage();
 }
 
 export function removeFromCart(productId) {
@@ -45,4 +61,6 @@ export function removeFromCart(productId) {
   });
 
   cart = newCart;
+
+  saveToStorage();
 }
