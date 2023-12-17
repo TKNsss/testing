@@ -25,6 +25,7 @@ import {cart, addToCart} from '../data/cart.js';
 import {products} from '../data/products.js';
 
 let productsHTML = '';
+let addedMessageTimeoutId;
 
 products.forEach((product) => {
   productsHTML += `
@@ -92,8 +93,6 @@ function updateCartQuantity() {
 
   document.querySelector(".js-cart-quantity").innerHTML = cartQuantity;
 }
-
-let addedMessageTimeoutId;
 
 function showAddedToCartMessage(productId) {
   const addedMessage = document.querySelector(`.js-added-to-cart-${productId}`);
