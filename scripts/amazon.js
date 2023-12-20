@@ -124,10 +124,8 @@ document.querySelectorAll('.js-add-to-cart')
 
       addToCart(productId);
 
-      console.log(cart);
-
       updateCartQuantity();
-
+      
       showAddedToCartMessage(productId);
     });
   });
