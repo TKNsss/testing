@@ -115,8 +115,17 @@
   margin-bottom: 5px;
 }
 
+/* This is a more specific selector that applies the style only to elements that have both classes in the specified structure. */
 .product-quantity .link-primary {
   margin-left: 3px;
+}
+
+.update-quantity-link {
+  display: initial;
+}
+
+.is-editing-quantity .update-quantity-link {
+  display: none;
 }
 
 .quantity-input {
@@ -124,6 +133,20 @@
   border-radius: 3px;
   border: 1px solid grey;
   margin-left: 3px;
+}
+
+.quantity-input, .save-quantity-link {
+  display: none;
+}
+
+/* The CSS "is-editing-quantity .quantity-input {...} styles elements with class "quantity-input" inside an element with class "is-editing-quantity" */
+.is-editing-quantity .quantity-input {
+  /* reset the display property */
+  display: initial;
+}
+
+.is-editing-quantity .save-quantity-link {
+  display: initial;
 }
 
 @media (max-width: 1000px) {
