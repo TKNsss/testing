@@ -1,5 +1,5 @@
 // .toFixed(number) : set precision of decimal number
-// remeber this:   document.querySelectorAll()
+// remeber this: document.querySelectorAll()
 /*
   data attribute syntax (just an HTML attribute):
 
@@ -26,7 +26,6 @@ import {products} from '../data/products.js';
 import {formatCurrency} from './utils/money.js';
 
 let productsHTML = '';
-let addedMessageTimeoutId;
 
 products.forEach((product) => {
   productsHTML += `
@@ -54,7 +53,7 @@ products.forEach((product) => {
 
       <div class="product-quantity-container">
         <select class="js-quantity-selector-${product.id}">
-          <option selec ted value="1">1</option>
+          <option selected value="1">1</option>
           <option value="2">2</option>
           <option value="3">3</option>
           <option value="4">4</option>
@@ -75,7 +74,7 @@ products.forEach((product) => {
       </div>
 
       <button class="add-to-cart-button button-primary js-add-to-cart" data-product-id="${
-        product.id   
+        product.id
       }">
         Add to Cart
       </button>
@@ -88,9 +87,12 @@ document.querySelector('.js-product-grid').innerHTML = productsHTML;
 function updateCartQuantity() {
   const cartQuantity = calculateCartQuantity();
   
-  document.querySelector(".js-cart-quantity").innerHTML = cartQuantity
+  document.querySelector('.js-cart-quantity').innerHTML = cartQuantity
 }
+
 updateCartQuantity();
+
+let addedMessageTimeoutId;
 
 function showAddedToCartMessage(productId) {
   const addedMessage = document.querySelector(`.js-added-to-cart-${productId}`);
