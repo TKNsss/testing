@@ -38,3 +38,4 @@ if (formatCurrency(2000.5) === "20.01") {
 }
 
 // group of related tests = test suite
+// ctrl + = to zoom in (web page)
