@@ -6,6 +6,8 @@ import formatCurrency from "../scripts/utils/money.js";
   - basic test cases = tests if the code is working
   - edge cases = tests with values that are tricky
 */
+// testing framework = external library that helps us write tests easier
+// most testing framework are similar (Jest for ReactJS, MochaJS)
 
 console.log("test suite: formatCurrency");
 
