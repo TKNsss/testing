@@ -1,7 +1,6 @@
 // .toFixed(number) : set precision of decimal number
-// remeber this: document.querySelectorAll()
 /*
-  data attribute syntax (just an HTML attribute):
+  data attribute syntax (an HTML attribute):
 
   data-........="${}"
       name     value
@@ -14,11 +13,7 @@
 
 // using module helps avoid naming conflicts
 // don't have to worry about order of files
-
-// .. means get out of the current folder
-// in this situation, we use .. to get out of the amazon.js to scripts file and to outside
-
-
+                    
 // import {cart as myCart} from '../data/cart.js';      
 // we can use this to declare another variable name called "cart"
 import {cart, addToCart, calculateCartQuantity} from '../data/cart.js';
@@ -42,6 +37,7 @@ products.forEach((product) => {
       <div class="product-rating-container">
         <img class="product-rating-stars"
           src="images/ratings/rating-${product.rating.stars * 10}.png">
+        
         <div class="product-rating-count link-primary">
           ${product.rating.count}
         </div>
@@ -87,7 +83,7 @@ document.querySelector('.js-product-grid').innerHTML = productsHTML;
 function updateCartQuantity() {
   const cartQuantity = calculateCartQuantity();
   
-  document.querySelector('.js-cart-quantity').innerHTML = cartQuantity
+  document.querySelector('.js-cart-quantity').innerHTML = cartQuantity;
 }
 
 updateCartQuantity();
@@ -98,8 +94,7 @@ function showAddedToCartMessage(productId) {
   const addedMessage = document.querySelector(`.js-added-to-cart-${productId}`);
   addedMessage.classList.add("added-to-cart-visible");
 
-  // Check if a previous timeoutId exists. If it does,
-  // we will stop it.
+  // Check if a previous timeoutId exists. If it does, we will stop it.
   if (addedMessageTimeoutId) {
     clearTimeout(addedMessageTimeoutId);
   }

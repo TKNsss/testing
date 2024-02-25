@@ -18,6 +18,8 @@ import {
   getDeliveryOption,
 } from "../../data/deliveryOptions.js";
 import { renderPaymentSummary } from "./paymentSummary.js";
+import { renderCheckoutHeader } from "./checkoutHeader.js";
+import { calculateDeliveryDate } from "../../data/deliveryOptions.js";
 
 /*
   - some libraries will use named/default export
@@ -29,10 +31,6 @@ import { renderPaymentSummary } from "./paymentSummary.js";
   - Best practice: when we need something complicated, try to find an external library first
   * not all the libraries having ESM version
 */
-hello();
-const today = dayjs();
-const deliveryDate = today.add(7, "days");
-console.log(deliveryDate.format("dddd, MMMM DD"));
 
 export function renderOrderSummary() {
   let cartSummaryHTML = "";
@@ -40,16 +38,12 @@ export function renderOrderSummary() {
   cart.forEach((cartItem) => {
     // take model
     const productId = cartItem.productId;
-
     const matchingProduct = getProduct(productId);
 
     const deliveryOptionId = cartItem.deliveryOptionId;
-
     const deliveryOption = getDeliveryOption(deliveryOptionId);
 
-    const today = dayjs();
-    const deliveryDate = today.add(deliveryOption.deliveryDays, "days");
-    const dateString = deliveryDate.format("dddd, MMMM DD");
+    const dateString = calculateDeliveryDate(deliveryOption);
 
     cartSummaryHTML += `
       <div class="cart-item-container js-cart-item-container-${
@@ -115,9 +109,7 @@ export function renderOrderSummary() {
     let html = "";
 
     deliveryOptions.forEach((deliveryOption) => {
-      const today = dayjs();
-      const deliveryDate = today.add(deliveryOption.deliveryDays, "days");
-      const dateString = deliveryDate.format("dddd, MMMM DD");
+      const dateString = calculateDeliveryDate(deliveryOption);
 
       const priceString =
         deliveryOption.priceCents === 0
@@ -156,29 +148,15 @@ export function renderOrderSummary() {
   document.querySelectorAll(".js-delete-link").forEach((link) => {
     link.addEventListener("click", () => {
       const { productId } = link.dataset;
-
       removeFromCart(productId);
 
-      const container = document.querySelector(
-        `.js-cart-item-container-${productId}`
-      );
-
-      container.remove();
-
-      updateCartQuantity();
+      renderCheckoutHeader();
+      renderOrderSummary();
       renderPaymentSummary();
     });
   });
 
-  function updateCartQuantity() {
-    const cartQuantity = calculateCartQuantity();
-
-    document.querySelector(
-      ".js-return-to-home-link"
-    ).innerHTML = `${cartQuantity} items`;
-  }
-
-  updateCartQuantity();
+  renderCheckoutHeader();
   // This function doesn't conflict with the other one in amazon.js as we're using modules
 
   document.querySelectorAll(".js-update-link").forEach((link) => {
@@ -187,7 +165,6 @@ export function renderOrderSummary() {
       const container = document.querySelector(
         `.js-cart-item-container-${productId}`
       );
-
       container.classList.add("is-editing-quantity");
     });
   });
@@ -215,7 +192,8 @@ export function renderOrderSummary() {
     );
     quantityLabel.innerHTML = newQuantity;
 
-    updateCartQuantity();
+    renderCheckoutHeader();
+    renderPaymentSummary();
   }
 
   document.querySelectorAll(".js-save-link").forEach((link) => {

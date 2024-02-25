@@ -14,13 +14,11 @@
 
 .checkout-grid {
   display: grid;
-  /* Here, 1fr means the first column will take
-     up the remaining space in the grid. */
+  /* Here, 1fr means the first column will take up the remaining space in the grid. */
   grid-template-columns: 1fr 350px;
   column-gap: 12px;
 
-  /* Use align-items: start; to prevent the elements
-     in the grid from stretching vertically. */
+  /* Use align-items: start; to prevent the elements in the grid from stretching vertically. */
   align-items: start;
 }
 
@@ -51,7 +49,7 @@
 
 @media (max-width: 1000px) {
   .payment-summary {
-    /* grid-row: 1 means this element will be placed into rown 1 in the grid. (Normally, the row that an element is placed in is determined by the order of the elements in the HTML. grid-row overrides this default ordering). */
+    /* grid-row: 1 means this element will be placed into row 1 in the grid. (Normally, the row that an element is placed in is determined by the order of the elements in the HTML. grid-row overrides this default ordering). */
     grid-row: 1;
     margin-bottom: 12px;
   }
@@ -85,8 +83,7 @@
 
   /* margin-left: auto;
      margin-right auto;
-     Is a trick for centering an element horizontally
-     without needing a container. */
+     Is a trick for centering a element horizontally without needing a container. */
   margin-left: auto;
   margin-right: auto;
 }
@@ -111,7 +108,8 @@
   display: initial;
 }
 
-.is-editing-quantity .update-quantity-link {
+.is-editing-quantity 
+.update-quantity-link {
   display: none;
 }
 
@@ -132,7 +130,8 @@
   display: initial;
 }
 
-.is-editing-quantity .save-quantity-link {
+.is-editing-quantity 
+.save-quantity-link {
   display: initial;
 }
 
