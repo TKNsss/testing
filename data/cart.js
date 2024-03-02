@@ -1,27 +1,33 @@
-export let cart = JSON.parse(localStorage.getItem('cart'));
-// 'cart' give the variable that we save
+export let cart;
 
-// give the cart default values when first access the checkout
-// if we dont have a cart in localStorage
-if (!cart) {
-  cart = [
-    {
-      productId: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
-      quantity: 2,
-      deliveryOptionId: '1'
-    },
-    {
-      productId: "15b6fc6f-327a-4ec4-896f-486349e85a3d",
-      quantity: 1,
-      deliveryOptionId: '2'
-    },
-  ];
-} 
+loadFromStorage();
+
+export function loadFromStorage() {
+  cart = JSON.parse(localStorage.getItem("cart"));
+  // 'cart' give the variable that we save
+
+  // give the cart default values when first access the checkout
+  // if we dont have a cart in localStorage
+  if (!cart) {
+    cart = [
+      {
+        productId: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
+        quantity: 2,
+        deliveryOptionId: "1",
+      },
+      {
+        productId: "15b6fc6f-327a-4ec4-896f-486349e85a3d",
+        quantity: 1,
+        deliveryOptionId: "2",
+      },
+    ];
+  }
+}
 
 function saveToStorage() {
-  localStorage.setItem('cart', JSON.stringify(cart));
+  localStorage.setItem("cart", JSON.stringify(cart));
   // receive 2 string : 'name (whatever we want)', 'data that we want to save'
-  // only save string 
+  // only save string
   // turn cart into string
 }
 
@@ -41,7 +47,12 @@ export function addToCart(productId) {
   const quantitySelector = document.querySelector(
     `.js-quantity-selector-${productId}`
   );
-  const quantity = Number(quantitySelector.value);
+  const quantity = quantitySelector ? Number(quantitySelector.value) : 1;
+
+  if (isNaN(quantity)) {
+    console.error("Invalid quantity value:", quantitySelector.value);
+    // Handle the error or provide a default value
+  }
 
   if (matchingItem) {
     matchingItem.quantity += quantity;
@@ -49,7 +60,7 @@ export function addToCart(productId) {
     cart.push({
       productId,
       quantity,
-      deliveryOptionId: '1'
+      deliveryOptionId: "1",
     });
   }
 
@@ -63,7 +74,7 @@ export function removeFromCart(productId) {
     if (cartItem.productId !== productId) {
       newCart.push(cartItem);
     }
-  });  
+  });
 
   cart = newCart;
 
