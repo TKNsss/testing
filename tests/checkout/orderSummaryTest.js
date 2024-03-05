@@ -75,11 +75,17 @@ describe("test suite: renderOrderSummary", () => {
     document.querySelector(".js-test-container").innerHTML = "";
   });
 });
-
 /*
   Hooks = lets us run some code for each test
   - beforeEach() = runs code before each test
   - afterEach() = runs code after each test
   - beforeAll() = runs code before all tests
   - afterAll() = runs code after all tests
+*/
+
+/*
+  Process
+  - make changes to code
+  - re-run the tests
+  - save to Git
 */
