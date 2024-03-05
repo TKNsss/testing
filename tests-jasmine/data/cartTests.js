@@ -2,9 +2,9 @@ import { addToCart, cart, loadFromStorage } from "../../data/cart.js";
 
 // best practice: test each condition of an if-statement -> test coverage = how much of the code is being tested (try to maximize test coverage)
 // Flaky test = test that sometimes passes and sometimes fails
-// mocks = lets us replace a method with a fake version
+// mocks = let us replace a method with a fake version
 // tests only pass if all the expectations pass (expect())
-// a mock only lasts for 1 test
+// a mock only lasts for 1 test, after that it erased
 describe("test suite: addToCart", () => {
   it("adds an existing product to the cart", () => {
     spyOn(localStorage, "setItem");
@@ -46,3 +46,6 @@ describe("test suite: addToCart", () => {
     expect(cart[0].quantity).toEqual(1);
   });
 });
+
+// Unit tests = testing 1 piece of the code: moneyTest and cartTest
+// Intergration Test = tests many units/pieces of code working together
