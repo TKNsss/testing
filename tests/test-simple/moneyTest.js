@@ -10,7 +10,6 @@ import formatCurrency from "../../scripts/utils/money.js";
 // most testing framework are similar (Jest for ReactJS, MochaJS)
 
 console.log("test suite: formatCurrency");
-
 console.log("converts cents into dollars");
 
 // basic test case
@@ -36,6 +35,4 @@ if (formatCurrency(2000.5) === "20.01") {
 } else {
   console.log("failed");
 }
-
 // group of related tests = test suite
-// ctrl + = to zoom in (web page)

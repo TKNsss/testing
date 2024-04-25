@@ -1,10 +1,11 @@
+import { getDeliveryOption } from "./deliveryOptions.js";
+
 export let cart;
 
 loadFromStorage();
 
 export function loadFromStorage() {
   cart = JSON.parse(localStorage.getItem("cart"));
-  // 'cart' give the variable that we save
 
   // give the cart default values when first access the checkout
   // if we dont have a cart in localStorage
@@ -32,7 +33,6 @@ function saveToStorage() {
 }
 
 // notice that data-product-name -> product-name convert into productName (kebab-case to camel case)
-
 // inside console, type localStorage.removeItem('cart') to use the default value
 
 export function addToCart(productId) {
@@ -63,7 +63,6 @@ export function addToCart(productId) {
       deliveryOptionId: "1",
     });
   }
-
   saveToStorage();
 }
 
@@ -111,8 +110,18 @@ export function updateDeliveryOption(productId, deliveryOptionId) {
   cart.forEach((cartItem) => {
     if (productId === cartItem.productId) {
       matchingItem = cartItem;
-    }
+    } 
   });
+
+  if (!matchingItem) {
+    return;
+  }
+
+  const deliveryOption = getDeliveryOption(deliveryOptionId);
+
+  if (!deliveryOption) {
+    return;
+  }
 
   matchingItem.deliveryOptionId = deliveryOptionId;
 

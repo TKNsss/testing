@@ -9,7 +9,7 @@
 */
 
 // modules only works when using live server 
-// can't use module when we open directly html file
+// can't use module when we directly open html file
 
 // using module helps avoid naming conflicts
 // don't have to worry about order of files
@@ -117,9 +117,7 @@ document.querySelectorAll('.js-add-to-cart')
       const { productId } = button.dataset;
 
       addToCart(productId);
-
       updateCartQuantity();
-      
       showAddedToCartMessage(productId);
     });
   });

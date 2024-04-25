@@ -71,7 +71,7 @@
 .search-bar {
   flex: 1;
   width: 0;
-  font-size: 16px;
+  font-size: 1rem;
   height: 38px;
   padding-left: 15px;
   border: none;
@@ -101,7 +101,7 @@
   width: 180px;
   flex-shrink: 0;
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
 }
 
 .orders-link {

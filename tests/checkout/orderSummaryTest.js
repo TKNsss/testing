@@ -11,6 +11,7 @@ describe("test suite: renderOrderSummary", () => {
   // global variables
   const productId1 = "e43638ce-6aa0-4b85-b27f-e1d07eb678c6";
   const productId2 = "15b6fc6f-327a-4ec4-896f-486349e85a3d";
+  
   // run set up code (hooks)
   beforeEach(() => {
     spyOn(localStorage, "setItem");
@@ -39,40 +40,79 @@ describe("test suite: renderOrderSummary", () => {
     renderOrderSummary();
   });
 
+  afterEach(() => {
+    document.querySelector(".js-test-container").innerHTML = "";
+  });
+
   it("display the cart", () => {
     // check the existence of 2 products in the cart
-    expect(document.querySelectorAll(".js-cart-item-container").length).toEqual(
-      2
-    );
+    expect(document.querySelectorAll(".js-cart-item-container").length).toEqual(2);
+
     // check if there is a text 'Quantity: 2'
     expect(
       document.querySelector(`.js-product-quantity-${productId1}`).innerText
     ).toContain("Quantity: 2");
+
     expect(
       document.querySelector(`.js-product-quantity-${productId2}`).innerText
     ).toContain("Quantity: 1");
 
-    document.querySelector(".js-test-container").innerHTML = '';
+    // check if names were displayed correctly
+    expect(
+      document.querySelector(`.js-product-name-${productId1}`).innerText
+    ).toContain("Black and Gray Athletic Cotton Socks - 6 Pairs");
+
+    expect(
+      document.querySelector(`.js-product-name-${productId2}`).innerText
+    ).toContain("Intermediate Size Basketball");
+
+    // check if prices were displayed correctly
+    expect(
+      document.querySelector(`.js-product-price-${productId1}`).innerText
+    ).toContain('$10.90');
+    expect(
+      document.querySelector(`.js-product-price-${productId2}`).innerText
+    ).toContain('$20.95');
   });
 
   it("removes a product", () => {
     document.querySelector(`.js-delete-link-${productId1}`).click();
+
     // check if after deleting a product
-    expect(document.querySelectorAll(".js-cart-item-container").length).toEqual(
-      1
-    );
+    expect(document.querySelectorAll(".js-cart-item-container").length).toEqual(1);
+
     // check if the first product container is non-existent
     expect(
       document.querySelector(`.js-cart-item-container-${productId1}`)
     ).toEqual(null);
+
     expect(
       document.querySelector(`.js-cart-item-container-${productId2}`)
     ).not.toEqual(null);
+
     // check if the cart updated
     expect(cart.length).toEqual(1);
     expect(cart[0].productId).toEqual(productId2);
+  });
 
-    document.querySelector(".js-test-container").innerHTML = "";
+  it('updates the delivery option', () => {
+    document.querySelector(`.js-delivery-option-${productId1}-3`).click();
+
+    expect(
+      document.querySelector(`.js-delivery-option-input-${productId1}-3`).checked
+    ).toEqual(true);
+
+    expect(cart.length).toEqual(2);
+    expect(cart[0].productId).toEqual(productId1);
+    expect(cart[0].deliveryOptionId).toEqual('3');
+
+    expect(
+      document.querySelector('.js-payment-summary-shipping').innerText
+    ).toEqual('$14.98');
+
+    expect(
+      document.querySelector('.js-payment-summary-total').innerText
+    ).toEqual('$63.50');
   });
 });
 /*
@@ -81,9 +121,7 @@ describe("test suite: renderOrderSummary", () => {
   - afterEach() = runs code after each test
   - beforeAll() = runs code before all tests
   - afterAll() = runs code after all tests
-*/
 
-/*
   Process
   - make changes to code
   - re-run the tests
