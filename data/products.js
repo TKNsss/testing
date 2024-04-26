@@ -33,7 +33,28 @@ class Product {
   getPrice() {
     return `$${formatCurrency(this.priceCents)}`;
   }
+
+  extraInfoHTML() {
+    return '';
+  }
 };
+
+class Clothing extends Product {
+  sizeChartLink;
+
+  constructor(productDetails) {
+    super(productDetails);
+    this.sizeChartLink = productDetails.sizeChartLink;
+  }
+
+  // if you want to use parent method, simply invoke it like this
+  extraInfoHTML() {
+    // super.extraInfoHTML();
+    return `
+      <a href="${this.sizeChartLink}" target="_blank">Size chart</a>
+    `;
+  }
+}
 
 /* The above code is defining an array of product objects with various details such as id, image, name,
 rating, price, and keywords. Each product object represents a different item available for sale.
@@ -556,5 +577,8 @@ export const products = [
     keywords: ["umbrella", "large", "green", "size"],
   },
 ].map((productDetails) => {
+  if (productDetails.type === 'clothing') {
+    return new Clothing(productDetails);
+  }
   return new Product(productDetails);
 });
