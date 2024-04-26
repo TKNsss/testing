@@ -1,3 +1,5 @@
+import formatCurrency from "../scripts/utils/money.js";
+
 export function getProduct(productId) {
   let matchingProduct;
 
@@ -9,6 +11,34 @@ export function getProduct(productId) {
   return matchingProduct;
 }
 
+class Product {
+  id;
+  image;
+  name;
+  rating;
+  priceCents;
+
+  constructor(productDetails) { 
+    this.id = productDetails.id;
+    this.image = productDetails.image;
+    this.name = productDetails.name;
+    this.rating = productDetails.rating;
+    this.priceCents = productDetails.priceCents;
+  }
+
+  getStarsUrl() {
+    return `images/ratings/rating-${this.rating.stars * 10}.png`;
+  }
+
+  getPrice() {
+    return `$${formatCurrency(this.priceCents)}`;
+  }
+};
+
+/* The above code is defining an array of product objects with various details such as id, image, name,
+rating, price, and keywords. Each product object represents a different item available for sale.
+Additionally, the code is using the `map` method to create instances of a `Product` class using the
+product details provided in each object. */
 export const products = [
   {
     id: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
@@ -525,4 +555,6 @@ export const products = [
     priceCents: 1201,
     keywords: ["umbrella", "large", "green", "size"],
   },
-];
+].map((productDetails) => {
+  return new Product(productDetails);
+});
