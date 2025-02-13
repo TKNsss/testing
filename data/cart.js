@@ -100,7 +100,6 @@ export function updateQuantity(productId, newQuantity) {
   });
 
   matchingItem.quantity = newQuantity;
-
   saveToStorage();
 }
 
@@ -122,8 +121,6 @@ export function updateDeliveryOption(productId, deliveryOptionId) {
   if (!deliveryOption) {
     return;
   }
-
   matchingItem.deliveryOptionId = deliveryOptionId;
-
   saveToStorage();
 }
